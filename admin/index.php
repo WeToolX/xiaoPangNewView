@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Content-Type: text/html; charset=UTF-8');
+}
+
 const DATA_FILE = __DIR__ . '/../data/routes.json';
 const WORD_BANK_FILE = __DIR__ . '/../config/word_bank.php';
 
