@@ -14,6 +14,7 @@ if (!function_exists('str_ends_with')) {
 
 if (!file_exists(DATA_FILE)) {
     http_response_code(500);
+    header('Content-Type: text/plain; charset=UTF-8');
     echo '路由数据文件不存在。';
     exit;
 }
@@ -36,6 +37,8 @@ function normalize_request_path(string $path): string
 }
 
 $requestPath = normalize_request_path($_SERVER['REQUEST_URI'] ?? '/');
+
+header('Content-Type: text/html; charset=UTF-8');
 
 if ($requestPath === '/' || $requestPath === '') {
     echo '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>图片跳转路由</title><style>body{font-family:Helvetica,Arial,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f7fb;margin:0;color:#2d3436;}main{max-width:560px;text-align:center;padding:2rem;background:#fff;border-radius:16px;box-shadow:0 12px 36px rgba(0,0,0,0.08);}a{color:#0984e3;text-decoration:none;}a:hover{text-decoration:underline;}</style></head><body><main><h1>图片跳转路由系统</h1><p>请访问后台创建个性化路由，或输入已配置的路由地址。</p><p><a href="/admin/">打开后台管理</a></p></main></body></html>';
