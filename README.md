@@ -25,3 +25,20 @@
 
 - 管理后台界面资源位于 `admin/` 目录。
 - 前台展示逻辑位于项目根目录的 `index.php`。
+
+## Nginx 伪静态配置
+
+```
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+
+location ^~ /admin/ {
+    try_files $uri $uri/ /admin/index.php?$query_string;
+}
+```
+
+## 管理员访问地址
+
+- 管理后台入口：`/admin/`
+
